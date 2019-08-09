@@ -7,10 +7,12 @@ from rest_framework import routers
 
 from core.api.viewsets import SurvivorViewSet
 from locations.api.viewsets import LocationViewSet
+from flags_infected.api.viewsets import FlagInfectedViewSet
 
 router = routers.DefaultRouter()
 router.register(r'survivors', SurvivorViewSet)
 router.register(r'locations', LocationViewSet)
+router.register(r'flags', FlagInfectedViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
