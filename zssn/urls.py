@@ -8,11 +8,13 @@ from rest_framework import routers
 from core.api.viewsets import SurvivorViewSet
 from locations.api.viewsets import LocationViewSet
 from flags_infected.api.viewsets import FlagInfectedViewSet
+from inventories.api.viewsets import InventoryViewSet
 
 router = routers.DefaultRouter()
-router.register(r'survivors', SurvivorViewSet)
-router.register(r'locations', LocationViewSet)
-router.register(r'flags', FlagInfectedViewSet)
+router.register('survivors', SurvivorViewSet)
+router.register('locations', LocationViewSet)
+router.register('flags', FlagInfectedViewSet)
+router.register('inventories', InventoryViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,6 +1,7 @@
 from django.db import models
 
 from locations.models import Location
+from inventories.models import Inventory
 
 
 class Survivor(models.Model):
@@ -19,6 +20,10 @@ class Survivor(models.Model):
                                       on_delete=models.CASCADE,
                                       blank=True,
                                       null=True)
+    inventory = models.ForeignKey(Inventory,
+                                  on_delete=models.CASCADE,
+                                  null=True,
+                                  blank=True)
 
     def save(self, *args, **kwargs):
         self.is_infected = True if self.infected_reports >= 3 else False
@@ -26,10 +31,6 @@ class Survivor(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Inventory(models.Model):
-    pass
 
 
 class Report(models.Model):
