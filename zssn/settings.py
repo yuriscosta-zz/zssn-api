@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Created
     'core',
     'locations',
+    'flags_infected',
 ]
 
 MIDDLEWARE = [

@@ -21,7 +21,7 @@ class Survivor(models.Model):
                                       null=True)
 
     def save(self, *args, **kwargs):
-        self.is_infected = True if self.infected_reports > 3 else False
+        self.is_infected = True if self.infected_reports >= 3 else False
         super(Survivor, self).save(*args, **kwargs)
 
     def __str__(self):
