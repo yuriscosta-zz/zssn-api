@@ -10,9 +10,4 @@ from .serializers import SurvivorSerializer
 class SurvivorViewSet(ModelViewSet):
     queryset = Survivor.objects.all()
     serializer_class = SurvivorSerializer
-
-    def update(self, request, pk=None):
-        return Response({"Error": "Not allowed"}, status=HTTP_405_METHOD_NOT_ALLOWED)
-
-    def destroy(self, request, pk=None):
-        return Response({"Error": "Not allowed"}, status=HTTP_405_METHOD_NOT_ALLOWED)
+    http_method_names = ['get', 'post', 'head', 'options', 'trace']
