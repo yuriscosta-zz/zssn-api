@@ -42,6 +42,3 @@ class SurvivorSerializer(ModelSerializer):
         survivor.save()
 
         return survivor
-
-    # def update(self, instance, validated_data):
-    #     return Response({"Error": "Not allowed"}, status=HTTP_405_METHOD_NOT_ALLOWED)
