@@ -5,7 +5,7 @@ from django.conf.urls import include
 
 from rest_framework import routers
 
-from core.api.viewsets import SurvivorViewSet
+from core.api.viewsets import SurvivorViewSet, TradeViewSet
 from locations.api.viewsets import LocationViewSet
 from flags_infected.api.viewsets import FlagInfectedViewSet
 from inventories.api.viewsets import InventoryViewSet
@@ -15,6 +15,7 @@ router.register('survivors', SurvivorViewSet)
 router.register('locations', LocationViewSet)
 router.register('flags', FlagInfectedViewSet)
 router.register('inventories', InventoryViewSet)
+router.register('trades', TradeViewSet, base_name='trades')
 
 urlpatterns = [
     path('', include(router.urls)),
