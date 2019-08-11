@@ -1,8 +1,5 @@
 from rest_framework.response import Response
-from rest_framework.status import HTTP_405_METHOD_NOT_ALLOWED
-
-from rest_framework.serializers import ModelSerializer
-
+from rest_framework.serializers import Serializer, ModelSerializer, IntegerField
 from core.models import Survivor
 from locations.models import Location
 from inventories.models import Inventory
@@ -42,3 +39,16 @@ class SurvivorSerializer(ModelSerializer):
         survivor.save()
 
         return survivor
+
+
+class TradeSerializer(Serializer):
+    sender = IntegerField()
+    receiver = IntegerField()
+    sender_water = IntegerField()
+    sender_food = IntegerField()
+    sender_medication = IntegerField()
+    sender_ammunition = IntegerField()
+    receiver_water = IntegerField()
+    receiver_food = IntegerField()
+    receiver_medication = IntegerField()
+    receiver_ammunition = IntegerField()
