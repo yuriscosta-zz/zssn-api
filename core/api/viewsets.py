@@ -6,6 +6,11 @@ from core.models import Survivor
 from inventories.models import Inventory
 
 from .serializers import SurvivorSerializer, TradeSerializer
+from .utils import (are_points_equal,
+                    are_trade_components_valid,
+                    calculate_points,
+                    trade_items,
+                    validate_survivor)
 
 
 class SurvivorViewSet(ModelViewSet):
@@ -18,44 +23,26 @@ class TradeViewSet(ModelViewSet):
     serializer_class = TradeSerializer
     http_method_names = ['post']
 
-    def validate_survivor(self, id):
-        survivor = Survivor.objects.filter(id=id).first()
-
-        return survivor if survivor else False
-
-    def calculate_points(self, water, food, medication, ammunition):
-        return int(water) * 4 + int(food) * 3 + int(medication) * 2 + int(ammunition) * 1
-
-    def are_points_equal(self, data):
-        sender_points = self.calculate_points(data['sender_water'],
-                                              data['sender_food'],
-                                              data['sender_medication'],
-                                              data['sender_ammunition'])
-        receiver_points = self.calculate_points(data['receiver_water'],
-                                                data['receiver_food'],
-                                                data['receiver_medication'],
-                                                data['receiver_ammunition'])
-
-        return sender_points == receiver_points
-
-        def validate_trade_components(self, survivor, data):
-            pass
-
     def create(self, request, pk=None):
         trade = TradeSerializer(data=request.data)
         if trade.is_valid():
-            sender = self.validate_survivor(trade.data['sender'])
-            receiver = self.validate_survivor(trade.data['receiver'])
+            sender = validate_survivor(trade.data['sender'])
+            receiver = validate_survivor(trade.data['receiver'])
 
             if sender and receiver:
                 if sender.is_infected or receiver.is_infected:
                     return Response({'error': "Infected survivors can't trade."},
                                     status=HTTP_400_BAD_REQUEST)
 
-                if not self.are_points_equal(trade.data):
+                if not are_points_equal(trade.data):
                     return Response({'error': "The points must be equal."},
                                     status=HTTP_400_BAD_REQUEST)
 
+                if not are_trade_components_valid(sender, receiver, trade.data):
+                    return Response({'error': "The number of items must be equal or less to the items in inventory."},
+                                    status=HTTP_400_BAD_REQUEST)
+
+                trade_items(sender, receiver, trade.data)
                 return Response({'details': 'Ok'},
                                 status=HTTP_200_OK)
 
