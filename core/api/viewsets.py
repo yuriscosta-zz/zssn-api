@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_200_OK, HTTP_400_BAD_REQUEST
 
 from core.models import Survivor
@@ -10,7 +10,10 @@ from .utils import (are_points_equal,
                     are_trade_components_valid,
                     calculate_points,
                     trade_items,
-                    validate_survivor)
+                    validate_survivor,
+                    generate_infected_survivors_report,
+                    generate_points_lost_report,
+                    generate_resources_average_by_survivor_report)
 
 
 class SurvivorViewSet(ModelViewSet):
@@ -48,3 +51,14 @@ class TradeViewSet(ModelViewSet):
 
             return Response({'error': 'One of the survivors was not found.'},
                             status=HTTP_404_NOT_FOUND)
+
+
+class ReportViewSet(ViewSet):
+    http_method_names = ['get']
+
+    def list(self, request):
+        return Response([generate_infected_survivors_report(),
+                         generate_infected_survivors_report(is_infected=True),
+                         generate_points_lost_report(),
+                         generate_resources_average_by_survivor_report()],
+                        status=HTTP_200_OK)

@@ -31,7 +31,3 @@ class Survivor(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Report(models.Model):
-    pass
