@@ -75,7 +75,7 @@ def generate_infected_survivors_report(is_infected=False):
         description = 'Percentage of non-infected survivors'
 
     report = {"description": description,
-              "value": '{}%'.format(100 * float(survivors) / total_survivors)}
+              "value": '{0:.2f}%'.format(100 * (survivors / total_survivors))}
 
     return report
 
@@ -96,7 +96,7 @@ def generate_resources_average_by_survivor_report():
 
     for survivor in survivors:
         inventory = Inventory.objects.filter(id=survivor['inventory']).first()
-        df = df.append(inventory.__dict__(), ignore_index=True)
+        df = df.append(inventory.__dict__, ignore_index=True)
 
     return {"description": "Average amount of each kind of resource by survivor",
             "value": {
