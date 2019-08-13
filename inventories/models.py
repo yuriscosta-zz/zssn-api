@@ -10,9 +10,3 @@ class Inventory(models.Model):
     @property
     def points(self):
         return self.water * 4 + self.food * 3 + self.medication * 2 + self.ammunition
-
-    def __dict__(self):
-        return {'water': self.water,
-                'food': self.food,
-                'medication': self.medication,
-                'ammunition': self.ammunition}
