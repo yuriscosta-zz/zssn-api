@@ -1,6 +1,6 @@
 import json
 
-from rest_framework.test import APITestCase, APIClient, APIRequestFactory
+from rest_framework.test import APITestCase, APIClient
 from rest_framework.status import (HTTP_200_OK,
                                    HTTP_201_CREATED,
                                    HTTP_400_BAD_REQUEST,
