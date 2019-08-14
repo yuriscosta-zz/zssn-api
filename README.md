@@ -55,7 +55,7 @@ Now that you have run the server, you can access the endpoints listed below.
 
 ### Survivors
 > Allowed HTTP methods: _get_, _post_ \
-> Actions: _list_, _create_
+> Actions: _list_, _detail_, _create_
 
 To __list__ all the survivors:
 ```
@@ -88,6 +88,36 @@ GET localhost:8000/survivors/
     },
     ...
 ]
+```
+
+To __detail__ a specific survivor:
+```
+# Request
+GET localhost:8000/survivors/<int:id>/
+```
+
+```
+# Response
+{
+    "id": 4,
+    "last_location": {
+        "id": 13,
+        "latitude": 300611.5,
+        "longitude": 300744.5
+    },
+    "inventory": {
+        "id": 4,
+        "water": 0,
+        "food": 0,
+        "medication": 2,
+        "ammunition": 10
+    },
+    "name": "Satoshi Nakamoto",
+    "age": 60,
+    "gender": "M",
+    "infected_reports": 3,
+    "is_infected": true
+}
 ```
 
 To __create__ a survivor:
@@ -221,7 +251,7 @@ POST localhost:8000/flag-survivor/
 
 ## Inventories
 > Allowed HTTP methods: _get_ \
-> Actions: _list_
+> Actions: _list_, _detail_
 
 To __list__ all the inventories:
 ```
@@ -248,6 +278,23 @@ GET localhost:8000/inventories/
         "ammunition": 1
     }
 ]
+```
+
+To __detail__ a specific inventory:
+```
+# Request
+GET localhost:8000/inventories/<int:id>/
+```
+
+```
+# Response
+{
+    "id": 1,
+    "water": 2,
+    "food": 2,
+    "medication": 1,
+    "ammunition": 3
+}
 ```
 
 ## Trade
