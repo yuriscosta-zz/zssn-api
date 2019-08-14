@@ -8,4 +8,4 @@ from .serializers import LocationSerializer
 class LocationViewSet(ModelViewSet):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
-    http_method_names = ['get']
+    http_method_names = ['get', 'put']
