@@ -18,12 +18,10 @@ class Survivor(models.Model):
     is_infected = models.BooleanField(default=False)
     last_location = models.ForeignKey(Location,
                                       on_delete=models.CASCADE,
-                                      blank=True,
-                                      null=True)
+                                      null=False)
     inventory = models.ForeignKey(Inventory,
                                   on_delete=models.CASCADE,
-                                  null=True,
-                                  blank=True)
+                                  null=False)
 
     def save(self, *args, **kwargs):
         self.is_infected = True if self.infected_reports >= 3 else False

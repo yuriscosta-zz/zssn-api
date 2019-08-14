@@ -46,7 +46,8 @@ class TradeViewSet(ModelViewSet):
                                     status=HTTP_400_BAD_REQUEST)
 
                 trade_items(sender, receiver, trade.data)
-                return Response({'details': 'Ok'},
+
+                return Response({'details': 'The trade was successful.'},
                                 status=HTTP_200_OK)
 
             return Response({'error': 'One of the survivors was not found.'},
