@@ -19,7 +19,7 @@ from .utils import (are_points_equal,
 class SurvivorViewSet(ModelViewSet):
     queryset = Survivor.objects.all()
     serializer_class = SurvivorSerializer
-    http_method_names = ['get', 'post', 'head', 'options', 'trace', 'delete']
+    http_method_names = ['get', 'post', 'delete']
 
 
 class TradeViewSet(ModelViewSet):
