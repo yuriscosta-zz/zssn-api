@@ -54,7 +54,7 @@ Run the server:
 Now that you have run the server, you can access the endpoints listed below.
 
 ### Survivors
-> Allowed HTTP methods: _get_, _post_
+> Allowed HTTP methods: _get_, _post_ \
 > Actions: _list_, _create_
 
 To __list__ all the survivors:
@@ -141,7 +141,7 @@ POST localhost:8000/survivors/
 ```
 
 ## Locations
-> Allowed HTTP methods: _get_, _put_
+> Allowed HTTP methods: _get_, _put_ \
 > Actions: _list_, _update_
 
 To __list__ all the locations:
@@ -191,7 +191,7 @@ PUT localhost:8000/locations/<int:id>/
 ```
 
 ## Flag Survivor
-> Allowed HTTP methods: _post_
+> Allowed HTTP methods: _post_ \
 > Actions: _create_
 
 To __flag__ as infected a survivor:
@@ -220,7 +220,7 @@ POST localhost:8000/flag-survivor/
 ```
 
 ## Inventories
-> Allowed HTTP methods: _get_
+> Allowed HTTP methods: _get_ \
 > Actions: _list_
 
 To __list__ all the inventories:
@@ -251,7 +251,7 @@ GET localhost:8000/inventories/
 ```
 
 ## Trade
-> Allowed HTTP methods: _post_
+> Allowed HTTP methods: _post_ \
 > Actions: _create_
 
 ### Details
@@ -297,7 +297,7 @@ POST http://localhost:8000/trade/
 ```
 
 ## Reports
-> Allowed HTTP methods: _get_
+> Allowed HTTP methods: _get_ \
 > Actions: _list_
 
 To __list__ all reports:
