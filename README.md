@@ -49,6 +49,11 @@ Run the server:
 ./manage.py runserver
 ```
 
+Run the tests:
+```
+./manage.py test
+```
+
 ## Using the API
 
 Now that you have run the server, you can access the endpoints listed below.
