@@ -9,8 +9,8 @@ from inventories.api.serializers import InventorySerializer
 
 
 class SurvivorSerializer(ModelSerializer):
-    last_location = LocationSerializer(many=False)
-    inventory = InventorySerializer(many=False)
+    last_location = LocationSerializer(many=False, required=False)
+    inventory = InventorySerializer(many=False, required=False)
 
     class Meta:
         model = Survivor
@@ -25,11 +25,15 @@ class SurvivorSerializer(ModelSerializer):
         survivor.inventory = new_inventory
 
     def create(self, validated_data):
-        last_location = validated_data['last_location']
-        inventory = validated_data['inventory']
+        last_location = {}
+        if 'last_location' in validated_data.keys():
+            last_location = validated_data['last_location']
+            del validated_data['last_location']
 
-        del validated_data['last_location']
-        del validated_data['inventory']
+        inventory = {}
+        if 'inventory' in validated_data.keys():
+            inventory = validated_data['inventory']
+            del validated_data['inventory']
 
         survivor = Survivor.objects.create(**validated_data)
 

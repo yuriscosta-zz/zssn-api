@@ -2,5 +2,5 @@ from django.db import models
 
 
 class Location(models.Model):
-    latitude = models.FloatField(default=None)
-    longitude = models.FloatField(default=None)
+    latitude = models.FloatField(null=True, default=None)
+    longitude = models.FloatField(null=True, default=None)

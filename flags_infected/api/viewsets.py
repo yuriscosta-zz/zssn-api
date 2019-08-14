@@ -8,3 +8,4 @@ from .serializers import FlagInfectedSerializer
 class FlagInfectedViewSet(ModelViewSet):
     queryset = FlagInfected.objects.all()
     serializer_class = FlagInfectedSerializer
+    http_method_names = ['post']

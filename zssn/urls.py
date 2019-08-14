@@ -13,9 +13,9 @@ from inventories.api.viewsets import InventoryViewSet
 router = routers.DefaultRouter()
 router.register('survivors', SurvivorViewSet)
 router.register('locations', LocationViewSet)
-router.register('flags', FlagInfectedViewSet)
+router.register('flag-survivor', FlagInfectedViewSet)
 router.register('inventories', InventoryViewSet)
-router.register('trades', TradeViewSet, base_name='trades')
+router.register('trade', TradeViewSet, base_name='trades')
 router.register('reports', ReportViewSet, base_name='reports')
 
 urlpatterns = [
