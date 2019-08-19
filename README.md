@@ -44,6 +44,11 @@ Install the dependencies:
 pipenv install
 ```
 
+Create the entire database structure:
+```
+./manage.py migrate
+```
+
 Run the server:
 ```
 ./manage.py runserver
